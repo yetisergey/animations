@@ -1,0 +1,190 @@
+html,
+body {
+    margin: 0px;
+    background: yellow;
+    font-family: 'Roboto', sans-serif;
+}
+
+.example {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+
+    a {
+        font-size: 5em;
+        cursor: pointer;
+        display: block;
+    }
+}
+
+.line_animation {
+    &::before {
+        content: "";
+        display: block;
+        background-color: black;
+        opacity: 0;
+        height: 3px;
+        transform: translateX(-50%);
+        transition: transform .2s ease, opacity .1s ease;
+    }
+
+    &:hover::before {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+.bottom_line_up_animation {
+    position: relative;
+
+    &::before {
+        content: "";
+        display: block;
+        background-color: black;
+        position: absolute;
+        top: 100%;
+        opacity: 0;
+        height: 3px;
+        width: 100%;
+        transform: translateY(15px);
+        transition: transform .2s ease, opacity .2s ease;
+    }
+
+    &:hover::before {
+        transform: translateY(0%);
+        opacity: 1;
+    }
+}
+
+.bottom_line_down_animation {
+    position: relative;
+
+    &::before {
+        content: "";
+        display: block;
+        background-color: black;
+        position: absolute;
+        top: 100%;
+        opacity: 0;
+        height: 3px;
+        width: 100%;
+        transform: translateY(-15px);
+        transition: transform .2s ease, opacity .2s ease;
+    }
+
+    &:hover::before {
+        transform: translateY(100%);
+        opacity: 1;
+    }
+}
+
+.left_bottom_line_down_animation {
+    position: relative;
+
+    &::before {
+        content: "";
+        border-bottom: 4px solid black;
+        border-left: 4px solid black;
+        height: 0px;
+        width: calc(100% + 4px);
+        position: absolute;
+        top: 0;
+        left: -4px;
+        transition: height .2s ease;
+    }
+
+    &:hover::before {
+        height: 100%;
+    }
+}
+
+.brackets_animation {
+    position: relative;
+
+    &:before {
+        content: "[";
+        position: absolute;
+        display: block;
+        opacity: 0;
+        transform: translateX(-20%);
+        transition: transform .2s ease, opacity .1s ease;
+    }
+
+    &:after {
+        content: "]";
+        position: absolute;
+        top: 0;
+        right: 0;
+        display: block;
+        opacity: 0;
+        transform: translateX(20%);
+        transition: transform .2s ease, opacity .1s ease;
+    }
+
+    &:hover:before {
+        transform: translateX(-100%);
+        opacity: 1;
+    }
+
+    &:hover:after {
+        transform: translateX(100%);
+        opacity: 1;
+    }
+}
+
+.slide_animation {
+    overflow: hidden;
+
+    & span {
+        position: relative;
+        transition: transform .2s ease;
+        display: inline-block;
+    }
+
+    & span::before {
+        content: attr(data-hover);
+        position: absolute;
+        top: 100%;
+        transform: translateY(0);
+        font-weight: bold;
+    }
+
+    &:hover span,
+    &:focus span {
+        transform: translateY(-100%);
+        opacity: 1;
+    }
+}
+
+.cubes_animation {
+    overflow: hidden;
+
+    & span {
+        position: relative;
+        display: inline-block;
+        transition: transform .3s ease;
+        transform: rotateX(0deg);
+    }
+
+    & span::before {
+        content: attr(data-hover);
+        position: absolute;
+        top: 100%;
+        transform: rotateX(90deg);
+        transition: top .3s ease, transform .3s ease, background .3s ease;
+        background: rgb(167, 167, 0);
+
+    }
+
+    &:hover span {
+        transform: rotateX(0deg) translateY(-100%);
+    }
+
+    &:hover span::before {
+        top: 0;
+        left: 0px;
+        transform: rotateX(0deg) translateY(100%);
+        background: rgb(255, 255, 0);
+    }
+}
